@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d96b6b;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .product {
+            width: calc(25% - 20px);
+            margin: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-sizing: border-box;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-details h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .product-details p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        .product-details a {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #d11f24;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+
+        .product-details a:hover {
+            background-color:#169f16;
+        }
+        #all{text-align: center;}
+    </style>
+</head>
+<body>
+    <h2 id="all">All Products</h2>
+    <div class="product-container">
+        {% for product in products %}
+        <div class="product">
+            <div class="product-image">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            </div>
+            <div class="product-details">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p>Price: {{ product.price }}</p>
+                <a href="{% url 'product_detail_view' id=product.id %}">View Product</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
