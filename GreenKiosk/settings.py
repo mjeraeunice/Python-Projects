@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     "CustomerService",
     "Registration",
     "Reviews",
-    "cart",
 ]
 
 MIDDLEWARE = [

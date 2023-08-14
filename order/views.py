@@ -19,7 +19,7 @@ def edit_order(request, order_number):
         form = OrderForm(request.POST, instance=order)
         if form.is_valid():
             form.save()
-            return redirect('order_list',id = order.id)
+            return redirect('order_detail', order_number=order_number)  # Redirect to order details page
     else:
         form = OrderForm(instance=order)
     return render(request, 'order/edit_order.html', {'form': form, 'order': order})

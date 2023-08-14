@@ -9,5 +9,6 @@
     <p>Address: {{ delivery.address }}</p>
     <p>Phone Number: {{ delivery.phone_number }}</p>
     <p>Distance: {{ delivery.distance }}</p>
+    <a href="{% url 'delivery:edit_delivery' delivery.id %}">Edit Delivery</a>
 </body>
 </html>

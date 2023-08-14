@@ -12,7 +12,7 @@
             <th>Phone Number</th>
             <th>Distance</th>
             <th>Delivery Fee</th>
-            <th>Edit</th>
+            <th>Details</th>
         </tr>
         {% for delivery in deliveries %}
             <tr>
@@ -21,9 +21,11 @@
                 <td>{{ delivery.phone_number }}</td>
                 <td>{{ delivery.distance }}</td>
                 <td>${{ delivery.calculate_delivery_fee }}</td>
-                <td><a href="{% url 'edit_delivery_view' delivery.id %}">Edit</a></td>
+                <td><a href="{% url 'delivery:delivery_detail' delivery.id %}">View Details</a></td>
             </tr>
         {% endfor %}
     </table>
 </body>
 </html>
+
+

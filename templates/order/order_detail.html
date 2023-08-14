@@ -1,15 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Order Detail - {{ order.order_number }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .order-details {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .order-details h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .order-details p {
+            font-size: 1.2rem;
+            color: #555;
+            margin: 10px 0;
+        }
+        .order-details strong {
+            color: #ff5733;
+        }
+        .edit-button {
+            margin-top: 20px;
+        }
+        .edit-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff5733;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .edit-button a:hover {
+            background-color: #e04826;
+        }
+    </style>
 </head>
 <body>
-    <h1>Order Detail - {{ order.order_number }}</h1>
-    <p><strong>Customer Name:</strong> {{ order.customer_name }}</p>
-    <p><strong>Customer Email:</strong> {{ order.customer_email }}</p>
-    <p><strong>Customer Phone Number:</strong> {{ order.customer_phone_number }}</p>
-    <p><strong>Order Date:</strong> {{ order.order_date }}</p>
-    <p><strong>Order Status:</strong> {{ order.get_order_status_display }}</p>
-    <!-- Display other order details here -->
+    <div class="container">
+        <h1>Order Detail - {{ order.order_number }}</h1>
+        <p><strong>Customer Name:</strong> {{ order.customer_name }}</p>
+        <p><strong>Customer Email:</strong> {{ order.customer_email }}</p>
+        <p><strong>Customer Phone Number:</strong> {{ order.customer_phone_number }}</p>
+        <p><strong>Order Date:</strong> {{ order.order_date }}</p>
+        <p><strong>Order Status:</strong> {{ order.get_order_status_display }}</p>
+        <div class="edit-button">
+            <a href="{% url 'edit_order' order.order_number %}">Edit Order</a>
+        </div>
+    </div>
 </body>
 </html>
