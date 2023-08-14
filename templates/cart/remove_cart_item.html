@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<title>Edit Cart Item</title>
+<title>Remove Cart Item</title>
 <body>
     <div class="container">
         <div class="content">
-            <h1>Edit Cart Item</h1>
+            <h1>Remove Cart Item</h1>
+            <p>Are you sure you want to remove this item from the cart?</p>
             <form method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Save Changes</button>
-                <a href="{% url 'cart:cart_item_detail' %}">Cancel</a>
+                <button type="submit">Confirm</button>
+                <a href="{% url 'cart:cart_detail' %}">Cancel</a>
             </form>
         </div>
-    </div> 
+    </div>
 </body>
 </html>

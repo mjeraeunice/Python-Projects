@@ -1,5 +1,5 @@
 from django.db import models
-# from cart.models import MyCart
+from cart.models import Cart
 from Customer.models import Customer
 from Delivery.models import Delivery
 # Create your models here.
@@ -16,7 +16,7 @@ class Order(models.Model):
         ('Canceled', 'Canceled'),
     ])
     customer=models.ForeignKey(Customer,null=True,on_delete=models.CASCADE)
-    # cart=models.OneToOneField(MyCart,null=True,on_delete=models.CASCADE)
+    cart=models.OneToOneField(Cart,null=True,on_delete=models.CASCADE)
     delivery=models.ForeignKey(Delivery,null=True, on_delete=models.CASCADE)
     
     class Meta:
