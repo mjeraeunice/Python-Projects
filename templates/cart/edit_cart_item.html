@@ -1,0 +1,40 @@
+<<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Cart Item - {{ cart_item.product_name }}</title>
+</head>
+<body>
+    <h1>Edit Cart Item - {{ cart_item.product_name }}</h1>
+    <table>
+        <tr>
+            <th>Field</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Product Name</td>
+            <td>{{ cart_item.product_name }}</td>
+        </tr>
+        <tr>
+            <td>Product Quantity</td>
+            <td>{{ cart_item.product_quantity }}</td>
+        </tr>
+        <tr>
+            <td>Product Price</td>
+            <td>${{ cart_item.product_price }}</td>
+        </tr>
+        <tr>
+            <td>Product Avatar</td>
+            <td><img src="{{ cart_item.product_avatar.url }}" alt="{{ cart_item.product_name }}" width="50"></td>
+        </tr>
+        <tr>
+            <td>Date Added</td>
+            <td>{{ cart_item.date_added }}</td>
+        </tr>
+    </table>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>
