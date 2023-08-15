@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review List</title>
+</head>
+<body>
+    <h1>Review List</h1>
+    <div class="review-list">
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    <a href="{% url 'review_detail' pk=review.pk %}">{{ review.comment }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="navigation">
+        <a href="{% url 'create_review' %}">Create New Review</a>
+    </div>
+</body>
+</html>

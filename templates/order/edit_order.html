@@ -58,15 +58,21 @@
             background-color: #e04826;
         }
     </style>
+    <title>Edit Order - {{ order.order_number }}</title>
 </head>
 <body>
+    {% block content %}
     <div class="edit-order-form">
         <h1>Edit Order - {{ order.order_number }}</h1>
-        <form method="post" action="{% url 'order_detail' order.order_number %}">
+        <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Save Changes</button>
         </form>
-        </div>
-</body>    
+        <a href="{% url 'order_detail' order_number=order.order_number %}">Return to Details</a>
+    </div>
+    {% endblock %}
+</body>
+</html>
+   
 </html>

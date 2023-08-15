@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Payment - {{ payment.id }}</title>
+</head>
+<body>
+    <div class="edit-payment-form">
+        <h1>Edit Payment - {{ payment.id }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+    <div class="navigation">
+        <a href="{% url 'payment_detail' payment.id %}">Back to Payment Detail</a>
+        <a href="{% url 'payment_list' %}">Back to Payment List</a>
+    </div>
+</body>
+</html>

@@ -17,4 +17,4 @@ class Cart(models.Model):
         return f"{self.user.username}'s Cart: {self.items_name}"
     
     class Meta:
-        verbose_name_plural = "My cart"
+        verbose_name_plural = "cart"

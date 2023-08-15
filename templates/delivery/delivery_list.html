@@ -5,26 +5,18 @@
 </head>
 <body>
     <h1>Delivery List</h1>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Phone Number</th>
-            <th>Distance</th>
-            <th>Delivery Fee</th>
-            <th>Details</th>
-        </tr>
+    <div class="delivery">
         {% for delivery in deliveries %}
-            <tr>
-                <td>{{ delivery.name }}</td>
-                <td>{{ delivery.address }}</td>
-                <td>{{ delivery.phone_number }}</td>
-                <td>{{ delivery.distance }}</td>
-                <td>${{ delivery.calculate_delivery_fee }}</td>
-                <td><a href="{% url 'delivery:delivery_detail' delivery.id %}">View Details</a></td>
-            </tr>
+        <div class="delivery-container">
+         <h3>Name: {{ delivery.name }}</h3>
+        <h3>Address: {{ delivery.address }}</h3>
+        <h3>Phone Number: {{ delivery.phone_number }}</h3>
+        <h3>Distance: {{ delivery.distance }}</h3>
+        <h3>Delivery fee: ${{ delivery.calculate_delivery_fee }}</h3>
+        <a href="{% url 'delivery:delivery_detail' delivery.id %}">View Details</a>
+        </div>
         {% endfor %}
-    </table>
+    </div>
 </body>
 </html>
 

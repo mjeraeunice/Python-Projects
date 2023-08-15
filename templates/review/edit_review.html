@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Review - {{ review.comment }}</title>
+</head>
+<body>
+    <h1>Edit Review - {{ review.comment }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+    <div class="navigation">
+        <a href="{% url 'review_detail' pk=review.pk %}">Back to Review Detail</a>
+    </div>
+</body>
+</html>

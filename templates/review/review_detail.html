@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Detail - {{ review.comment }}</title>
+</head>
+<body>
+    <div class="review-detail">
+        <h1>Review Detail - {{ review.comment }}</h1>
+        <p><strong>Rating:</strong> {{ review.rating }}</p>
+        <p><strong>Comment:</strong> {{ review.comment }}</p>
+        <p><strong>Date Created:</strong> {{ review.date_created }}</p>
+        <p><strong>Date Updated:</strong> {{ review.date_updated }}</p>
+    </div>
+    <div class="navigation">
+        <a href="{% url 'edit_review' pk=review.pk %}">Edit Review</a>
+        <a href="{% url 'review_list' %}">Back to Review List</a>
+    </div>
+</body>
+</html>

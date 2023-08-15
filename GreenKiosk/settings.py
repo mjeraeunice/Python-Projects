@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "Registration",
     "Reviews",
     "cart",
+    "payment",
 ]
 
 MIDDLEWARE = [

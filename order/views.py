@@ -15,13 +15,15 @@ def create_order(request):
 
 def edit_order(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
+    
     if request.method == 'POST':
         form = OrderForm(request.POST, instance=order)
         if form.is_valid():
             form.save()
-            return redirect('order_detail', order_number=order_number)  # Redirect to order details page
+            return redirect('order_detail', order_number=order_number)
     else:
         form = OrderForm(instance=order)
+
     return render(request, 'order/edit_order.html', {'form': form, 'order': order})
 
 def order_list(request):
