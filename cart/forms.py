@@ -1,7 +1,7 @@
 from django import forms
-from .models import Cart
+from .models import Product_Cart
 
-class CartForm(forms.ModelForm):
-    class Meta:
-        model = Cart
-        fields = ['items_name', 'price', 'number_of_items', 'discount', 'quantity', 'description']
+class CartUploadForm(forms.ModelForm):
+    class Meta: 
+        model = Product_Cart
+        fields = "__all__"

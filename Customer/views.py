@@ -15,17 +15,6 @@ def add_customer(request):
         form = CustomerForm()
     return render(request, 'customer/create_customer.html', {'form': form})
 
-def edit_customer(request, customer_id):
-    customer = get_object_or_404(Customer, id=customer_id)
-    if request.method == 'POST':
-        form = CustomerForm(request.POST, request.FILES, instance=customer)
-        if form.is_valid():
-            form.save()
-            return redirect('customer_list')
-    else:
-        form = CustomerForm(instance=customer)
-    return render(request, 'customer/edit_customer.html', {'form': form, 'customer': customer})
-
 def customer_list(request):
     customers = Customer.objects.all()
     return render(request, 'customer/customer_list.html', {'customers': customers})
@@ -36,11 +25,12 @@ def customer_detail(request, customer_id):
 
 def edit_customer(request, customer_id):
     customer = get_object_or_404(Customer, id=customer_id)
+    
     if request.method == 'POST':
         form = CustomerForm(request.POST, instance=customer)
         if form.is_valid():
             form.save()
-            return redirect('customer_details', customer_id=customer.id)
+            return redirect('customer_list')  # Redirect to customer list view
     else:
         form = CustomerForm(instance=customer)
     

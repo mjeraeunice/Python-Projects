@@ -24,11 +24,14 @@ urlpatterns = [
     path("inventory/", include ("inventory.urls")),
     path('order/', include('order.urls')),
     path('delivery/', include('Delivery.urls')),
-    path('cart/',include('cart.urls')),
+    path('cart/', include ("cart.urls")),
     path('customer/', include('Customer.urls')),
     path('payment/',include('payment.urls')),
     path('review/',include('Reviews.urls')),
+    path('registration/',include('Registration.urls')),
+    path('api/',include('api.urls')),
 ]
 
 if settings.DEBUG:
     urlpatterns +=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

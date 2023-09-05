@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cart', '0001_initial'),
+        # ('cart', '0001_initial'),
         ('Customer', '0002_alter_customer_options_customer_user'),
         ('Delivery', '0002_alter_delivery_options'),
         ('order', '0001_initial'),
@@ -18,11 +18,11 @@ class Migration(migrations.Migration):
             name='order',
             options={'verbose_name_plural': 'Order'},
         ),
-        migrations.AddField(
-            model_name='order',
-            name='cart',
-            field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, to='cart.cart'),
-        ),
+        # migrations.AddField(
+        #     model_name='order',
+        #     name='cart',
+        #     field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, to='cart.cart'),
+        # ),
         migrations.AddField(
             model_name='order',
             name='customer',

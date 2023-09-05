@@ -1,20 +1,14 @@
 from django.db import models
-from inventory.models import Product
-from django.contrib.auth.models import User
-
+from  inventory.models import Product
 # Create your models here.
-class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    items_name = models.CharField(max_length=32)
-    price = models.DecimalField(max_digits=8, decimal_places=2)
-    number_of_items = models.PositiveIntegerField(default=1)
-    discount = models.DecimalField(max_digits=8, decimal_places=2)
-    quantity = models.PositiveIntegerField(default=1)
-    description = models.TextField()
 
-    def __str__(self):
-        return f"{self.user.username}'s Cart: {self.items_name}"
-    
+class Product_Cart(models.Model):
     class Meta:
-        verbose_name_plural = "cart"
+        verbose_name_plural = "Products"
+    products = models.ManyToManyField(Product)
+    product_name = models.CharField(max_length=32)
+    product_price = models.IntegerField()
+    product_quantity = models.IntegerField()
+    product_image =models.ImageField()
+    date_added = models.DateTimeField()
+    

@@ -16,6 +16,7 @@
             <p><strong>Email:</strong> {{ customer.email }}</p>
             <p><strong>Password:</strong> {{ customer.password }}</p>
         </div>
+        <a href="{% url 'edit_customer' customer.id %}">Edit Customer Details</a>
     </div>
 </body>
 </html>

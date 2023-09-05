@@ -1,37 +1,52 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Cart
-from inventory.models import Product
-from .forms import CartForm
+from django.shortcuts import render, redirect
+from .models import Product_Cart
+from datetime import datetime
+from .models import Product
 
-def cart_list(request):
-    cart_items = Cart.objects.filter(user=request.user)
-    return render(request, 'cart/cart_list.html', {'cart_items': cart_items})
+def view_cart(request):
+    product_cart = Product_Cart.objects.all()
+    
+    total_cart_price = 0
 
-def cart_item_detail(request, item_id):
-    cart_item = get_object_or_404(Cart, id=item_id, user=request.user)
+    for item in product_cart:
+        item.total_price = item.product_price * item.product_quantity
+        total_cart_price += item.total_price
+
+    return render(request, "cart/view_cart.html", {"product_cart": product_cart, "total_cart_price": total_cart_price})
+
+
+def update_cart(request, id):
     if request.method == 'POST':
-        form = CartForm(request.POST, instance=cart_item)
-        if form.is_valid():
-            form.save()
-            return redirect('cart:cart_list')
-    else:
-        form = CartForm(instance=cart_item)
-    return render(request, 'cart/cart_detail.html', {'form': form, 'cart_item': cart_item})
+        quantity = int(request.POST.get('quantity', 1))
+        cart_item = Product_Cart.objects.get(id=id)
+        if quantity > 0:
+            cart_item.product_quantity = quantity
+            cart_item.save()
+        else:
+            cart_item.delete()
+    return redirect('view_cart')
 
-def edit_cart_item(request, item_id):
-    cart_item = get_object_or_404(Cart, id=item_id, user=request.user)
-    if request.method == 'POST':
-        form = CartForm(request.POST, instance=cart_item)
-        if form.is_valid():
-            form.save()
-            return redirect('cart:cart_list')
-    else:
-        form = CartForm(instance=cart_item)
-    return render(request, 'cart/edit_cart_item.html', {'form': form, 'cart_item': cart_item})
 
-def remove_cart_item(request, item_id):
-    cart_item = get_object_or_404(Cart, id=item_id, user=request.user)
-    if request.method == 'POST':
-        cart_item.delete()
-        return redirect('cart:cart_list')
-    return render(request, 'cart/remove_cart_item.html', {'cart_item': cart_item})
+
+def remove_item(request, id):
+    cart_item = Product_Cart.objects.get(id=id)
+    cart_item.delete()
+
+    return redirect('view_cart')
+def empty_cart(request):
+    Product_Cart.objects.all().delete()
+    return redirect("view_cart")
+
+def add_to_cart(request, id):
+    product = Product.objects.get(id=id)
+
+    cart_item = Product_Cart (
+        product_name = product.name,
+        product_price = product.price,
+        product_image = product.image,
+        product_quantity = 1,
+        date_added=datetime.now(),
+    )
+    cart_item.save()
+
+    return redirect("products_list")

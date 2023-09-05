@@ -41,13 +41,14 @@ INSTALLED_APPS = [
     "order",
     "inventory",
     "vendor",
-    "Customer",
     "Delivery",
     "CustomerService",
     "Registration",
     "Reviews",
-    "cart",
     "payment",
+    "Customer",
+    "cart",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
