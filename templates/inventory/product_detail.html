@@ -3,72 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Product Detail</title>
     <style>
         body {
+            background-color: #f5eef5;
             font-family: Arial, sans-serif;
-            line-height: 1.6;
             margin: 0;
-            padding: 20px;
-            margin-left: 40%;
-            background-color: #f8f8f8;
+            padding: 0;
         }
-    
-        h2 {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 10px;
-            text-transform: capitalize;
-            margin-left: 4%;
+        h1.p {
+            color: #ee609c;
+            text-align: center;
+            margin-top: 30px;
         }
-    
-        img {
-            max-width: 100%;
-            height: 200px;
-            display: block;
-            margin-bottom: 20px;
-            border-radius: 5%;
+        .allproducts {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .product-container {
+            background-color: #fff;
+            border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px;
+            text-align: center;
+            width: 300px;
         }
-    
-        p {
-            color: #555;
-            margin-left: 4%;
+        .product-container img {
+            max-width: 100%;
+            height: auto;
         }
-    
-        span {
-            font-weight: bold;
-            color: #70d8a0;
+        .product-name {
+            font-size: 18px;
+            margin-top: 10px;
+            color: #ee609c;
+        }
+        .name {
+            background-color: #ee609c;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .name:hover {
+            background-color: #f67fa6;
+        }
+        .cart {
             display: block;
-            margin-bottom: 10px;
-            margin-left: 4%;
+            text-align: center;
+            margin-top: 20px;
         }
-    
-        button {
-            background-color: #ff7f50;
-            color: #fff;
+        .cart button {
+            background-color: #ee609c;
+            color: white;
             border: none;
             padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 4px;
-            margin-left: 4%;
-            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
-    
-        button:hover {
-            background-color: #ff6347;
+        .cart button:hover {
+            background-color: #f67fa6;
         }
     </style>
 </head>
 <body>
-    <h2>{{product.name}}</h2>
-    <img src="{{product.image.url}}" alt="{{product.name}}"/>
-    <p>{{product.description}}</p>
-    <span>{{product.price}}</span>
+    <h2>{{ product.name }}</h2>
+    <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+    <p>{{ product.description }}</p>
+    <span>Price: ${{ product.price }}</span>
   
     <a class="name" href="{% url 'add_to_cart' id=product.id %}"><button class="add_to_cart">Add to Cart</button></a>
-
-   
 </body>
 </html>
